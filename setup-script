@@ -1,0 +1,51 @@
+#!/bin/bash
+
+cwd=$(pwd)
+
+get-projects(){
+	echo "Creating Projects directory..."
+	mkdir ~/Projects
+}
+
+get-apt () {
+	echo "Installing" $1
+	sudo apt-get install $1 -y
+	echo "Finished installing" $1
+}
+
+get-snap (){
+	echo "Installing" $1
+	sudo snap install $1
+	echo "Finished installing" $1
+}
+
+echo "------------------------------------------"
+echo "Welcome to the Setup Script!"
+echo "------------------------------------------"
+echo "Installing your programs"
+echo "------------------------------------------"
+
+input1="$cwd/apt-stuff"
+while IFS= read -r  line
+do
+        get-apt $line
+done <"$input1"
+
+input2="$cwd/snap-stuff"
+while IFS= read -r line
+do
+	get-snap $line
+done <"$input2"
+
+sudo apt-get update
+sudo snap refresh
+
+echo "------------------------------------------"
+echo "Getting your projects"
+echo "------------------------------------------"
+
+get-projects
+
+echo "------------------------------------------"
+echo "Done!"
+echo "------------------------------------------"
