@@ -11,12 +11,14 @@ get-apt () {
 	echo "Installing" $1
 	sudo apt-get install $1 -y
 	echo "Finished installing" $1
+echo "------------------------------------------"
 }
 
 get-snap (){
 	echo "Installing" $1
 	sudo snap install $1
 	echo "Finished installing" $1
+echo "------------------------------------------"
 }
 
 echo "------------------------------------------"
