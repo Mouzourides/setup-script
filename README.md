@@ -1,6 +1,6 @@
 # setup-script
 
-A quick script I wrote to hook me up with programs because I'm lazy,
+A quick script I wrote to hook me up with programs because I'm lazy.
 Designed for Ubuntu based distros.
 
 ## How to run
