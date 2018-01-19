@@ -26,7 +26,8 @@ echo "------------------------------------------"
 }
 
 get-wallpaper (){
-	cd ~/Pictures
+	mkdir ~/Pictures/Wallpapers
+	cd ~/Pictures/Wallpapers
 	curl -O http://wallpaperget.com/downloadoriginal.php?name=desktop-wallpaper-38.jpg wallpaper.jpg
 	gsettings set org.gnome.desktop.background picture-uri 'file:///home/mouzourides/Pictures/wallpaper.jpg'
 }
