@@ -11,16 +11,24 @@ get-projects(){
 
 get-apt () {
 	echo "Installing" $1
+	echo "------------------------------------------"
 	sudo apt-get install $1 -y
 	echo "Finished installing" $1
-echo "------------------------------------------"
+	echo "------------------------------------------"
 }
 
 get-snap (){
 	echo "Installing" $1
+	echo "------------------------------------------"
 	sudo snap install $1
 	echo "Finished installing" $1
 echo "------------------------------------------"
+}
+
+get-wallpaper (){
+	cd ~/Pictures
+	curl -O http://wallpaperget.com/downloadoriginal.php?name=desktop-wallpaper-38.jpg wallpaper.jpg
+	gsettings set org.gnome.desktop.background picture-uri 'file:///home/mouzourides/Pictures/wallpaper.jpg'
 }
 
 echo "------------------------------------------"
@@ -29,13 +37,13 @@ echo "------------------------------------------"
 echo "Installing your programs"
 echo "------------------------------------------"
 
-input1="$cwd/apt-stuff"
+input1="$cwd/Data/apt-stuff"
 while IFS= read -r  line
 do
         get-apt $line
 done <"$input1"
 
-input2="$cwd/snap-stuff"
+input2="$cwd/Data/snap-stuff"
 while IFS= read -r line
 do
 	get-snap $line
@@ -48,13 +56,16 @@ echo "------------------------------------------"
 echo "Getting your projects"
 echo "------------------------------------------"
 
-input4="$cwd/projects-stuff"
+input4="$cwd/Data/projects-stuff"
 while IFS= read -r  line
 do
 	IFS=', ' read -r -a array <<< "$line"
 	get-projects ${array[0]} ${array[1]}
 done < "$input4"
 
+echo "------------------------------------------"
+echo "Setting your wallpaper"
+get-wallpaper
 echo "------------------------------------------"
 echo "Done!"
 echo "------------------------------------------"
