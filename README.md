@@ -1,15 +1,14 @@
 # setup-script
 
-A quick script I wrote to hook me up with programs because I'm lazy.
-Designed for Ubuntu based distros.
+A quick script I wrote, designed for Ubuntu based distros, to hook me up with packages because I'm lazy.
+
+Credit to [Sam Warner](https://github.com/sjwarner) for the idea.
 
 ## How to run
 
-Clone the repo, edit the apt-stuff and snap-stuff files to install your desired packages and run:
-
-```
-./setup-script.sh
-```
+- Clone this repo
+- Edit the `apt-stuff` and `snap-stuff` files to install your desired packages via `apt-get` and `snap` 
+- Run: `./setup-script.sh`
 
 ## License
 
