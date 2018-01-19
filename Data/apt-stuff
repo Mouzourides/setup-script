@@ -4,3 +4,6 @@ gitk
 chromium-browser
 xclip
 default-jdk
+maven
+nodejs
+docker-ce

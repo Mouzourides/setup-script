@@ -7,7 +7,8 @@ Credit to [Sam Warner](https://github.com/sjwarner) for the idea.
 ## How to run
 
 - Clone this repo
-- Edit the `apt-stuff` and `snap-stuff` files to install your desired packages via `apt-get` and `snap` 
+- Edit the `apt-stuff` and `snap-stuff` files in the Data directory to install your desired packages via `apt-get` and `snap`
+- Edit the `projects-stuff` file in the Data directory using the following format: `repo author,repo title` e.g. `Nik-Mouz,setup-script` 
 - Run: `./setup-script.sh`
 
 ## License
