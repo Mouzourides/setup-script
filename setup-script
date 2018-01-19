@@ -5,23 +5,43 @@ cwd=$(pwd)
 get-projects(){
 	mkdir ~/Projects
 	cd ~/Projects
-	git clone git@github.com:$1/$2.git
+
+	input4="$cwd/Data/projects-stuff"
+	while IFS= read -r  line
+	do
+		IFS=', ' read -r -a array <<< "$line"
+			git clone git@github.com:${array[0]}/${array[1]}.git
+	done < "$input4"
 }
 
 get-apt () {
-	echo "Installing" $1
-	echo "------------------------------------------"
-	sudo apt-get install $1 -y
-	echo "Finished installing" $1
-	echo "------------------------------------------"
+	input1="$cwd/Data/apt-stuff"
+	while IFS= read -r  line
+	do
+		echo "Installing" $line
+		echo "------------------------------------------"
+		sudo apt-get install $line -y
+		echo "Finished installing" $line
+		echo "------------------------------------------"
+	done <"$input1"
 }
 
 get-snap (){
-	echo "Installing" $1
-	echo "------------------------------------------"
-	sudo snap install $1
-	echo "Finished installing" $1
-	echo "------------------------------------------"
+	input2="$cwd/Data/snap-stuff"
+	while IFS= read -r line
+	do
+		echo "Installing" $line
+		echo "------------------------------------------"
+		sudo snap install $line
+		echo "Finished installing" $line
+		echo "------------------------------------------"
+	done <"$input2"
+
+}
+
+refresh (){
+	sudo apt-get update
+	sudo snap refresh
 }
 
 get-wallpaper (){
@@ -31,45 +51,14 @@ get-wallpaper (){
 	gsettings set org.gnome.desktop.background picture-uri 'file:///home/mouzourides/Pictures/wallpaper.jpg'
 }
 
-loop-apt (){
-	input1="$cwd/Data/apt-stuff"
-	while IFS= read -r  line
-	do
-	        get-apt $line
-	done <"$input1"
-}
-
-loop-snap (){
-	input2="$cwd/Data/snap-stuff"
-	while IFS= read -r line
-	do
-		get-snap $line
-	done <"$input2"
-}
-
-
-refresh (){
-	sudo apt-get update
-	sudo snap refresh
-}
-
-loop-projects (){
-	input4="$cwd/Data/projects-stuff"
-	while IFS= read -r  line
-	do
-		IFS=', ' read -r -a array <<< "$line"
-		get-projects ${array[0]} ${array[1]}
-	done < "$input4"
-}
-
 echo "------------------------------------------"
 echo "Welcome to the Setup Script!"
 echo "------------------------------------------"
 echo "Installing your programs"
 echo "------------------------------------------"
 
-loop-apt
-loop-snap
+get-apt
+get-snap
 
 refresh
 
@@ -77,7 +66,7 @@ echo "------------------------------------------"
 echo "Getting your projects"
 echo "------------------------------------------"
 
-loop-projects
+get-projects
 
 echo "------------------------------------------"
 echo "Setting your wallpaper"
