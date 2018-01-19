@@ -5,6 +5,8 @@ cwd=$(pwd)
 get-projects(){
 	echo "Creating Projects directory..."
 	mkdir ~/Projects
+	cd ~/Projects
+	git clone git@github.com:$1/$2.git
 }
 
 get-apt () {
@@ -46,7 +48,12 @@ echo "------------------------------------------"
 echo "Getting your projects"
 echo "------------------------------------------"
 
-get-projects
+input4="$cwd/projects-stuff"
+while IFS= read -r  line
+do
+	IFS=', ' read -r -a array <<< "$line"
+	get-projects ${array[0]} ${array[1]}
+done < "$input4"
 
 echo "------------------------------------------"
 echo "Done!"
