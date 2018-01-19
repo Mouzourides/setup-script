@@ -3,7 +3,6 @@
 cwd=$(pwd)
 
 get-projects(){
-	echo "Creating Projects directory..."
 	mkdir ~/Projects
 	cd ~/Projects
 	git clone git@github.com:$1/$2.git
@@ -22,7 +21,7 @@ get-snap (){
 	echo "------------------------------------------"
 	sudo snap install $1
 	echo "Finished installing" $1
-echo "------------------------------------------"
+	echo "------------------------------------------"
 }
 
 get-wallpaper (){
@@ -32,41 +31,59 @@ get-wallpaper (){
 	gsettings set org.gnome.desktop.background picture-uri 'file:///home/mouzourides/Pictures/wallpaper.jpg'
 }
 
+loop-apt (){
+	input1="$cwd/Data/apt-stuff"
+	while IFS= read -r  line
+	do
+	        get-apt $line
+	done <"$input1"
+}
+
+loop-snap (){
+	input2="$cwd/Data/snap-stuff"
+	while IFS= read -r line
+	do
+		get-snap $line
+	done <"$input2"
+}
+
+
+refresh (){
+	sudo apt-get update
+	sudo snap refresh
+}
+
+loop-projects (){
+	input4="$cwd/Data/projects-stuff"
+	while IFS= read -r  line
+	do
+		IFS=', ' read -r -a array <<< "$line"
+		get-projects ${array[0]} ${array[1]}
+	done < "$input4"
+}
+
 echo "------------------------------------------"
 echo "Welcome to the Setup Script!"
 echo "------------------------------------------"
 echo "Installing your programs"
 echo "------------------------------------------"
 
-input1="$cwd/Data/apt-stuff"
-while IFS= read -r  line
-do
-        get-apt $line
-done <"$input1"
+loop-apt
+loop-snap
 
-input2="$cwd/Data/snap-stuff"
-while IFS= read -r line
-do
-	get-snap $line
-done <"$input2"
-
-sudo apt-get update
-sudo snap refresh
+refresh
 
 echo "------------------------------------------"
 echo "Getting your projects"
 echo "------------------------------------------"
 
-input4="$cwd/Data/projects-stuff"
-while IFS= read -r  line
-do
-	IFS=', ' read -r -a array <<< "$line"
-	get-projects ${array[0]} ${array[1]}
-done < "$input4"
+loop-projects
 
 echo "------------------------------------------"
 echo "Setting your wallpaper"
+
 get-wallpaper
+
 echo "------------------------------------------"
 echo "Done!"
 echo "------------------------------------------"
