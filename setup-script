@@ -24,6 +24,8 @@ get-apt () {
 		echo "Finished installing" $line
 		echo "------------------------------------------"
 	done <"$input1"
+
+	sudo apt-get update
 }
 
 get-snap (){
@@ -37,10 +39,6 @@ get-snap (){
 		echo "------------------------------------------"
 	done <"$input2"
 
-}
-
-refresh (){
-	sudo apt-get update
 	sudo snap refresh
 }
 
@@ -59,8 +57,6 @@ echo "------------------------------------------"
 
 get-apt
 get-snap
-
-refresh
 
 echo "------------------------------------------"
 echo "Getting your projects"
