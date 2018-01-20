@@ -45,8 +45,8 @@ get-snap (){
 get-wallpaper (){
 	mkdir ~/Pictures/Wallpapers
 	cd ~/Pictures/Wallpapers
-	curl -o http://wallpaperget.com/downloadoriginal.php?name=desktop-wallpaper-38.jpg wallpaper.jpg
-	gsettings set org.gnome.desktop.background picture-uri 'file:///home/mouzourides/Pictures/wallpaper.jpg'
+	curl http://wallpaperget.com/downloadoriginal.php?name=desktop-wallpaper-38.jpg > wallpaper.jpg
+	gsettings set org.gnome.desktop.background picture-uri '/home/mouzourides/Pictures/Wallpapers/wallpaper.jpg'
 }
 
 echo "------------------------------------------"
