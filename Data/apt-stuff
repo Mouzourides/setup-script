@@ -6,6 +6,6 @@ xclip
 default-jdk
 maven
 nodejs
-docker-ce
+docker
 curl
 snapd-xdg-open
