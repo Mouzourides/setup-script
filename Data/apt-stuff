@@ -8,3 +8,4 @@ maven
 nodejs
 docker-ce
 curl
+snapd-xdg-open
