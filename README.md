@@ -9,6 +9,7 @@ Credit to [Sam Warner](https://github.com/sjwarner) for the idea.
 - Clone this repo
 - Edit the `apt-stuff` and `snap-stuff` files in the Data directory to install your desired packages via `apt-get` and `snap`
 - Edit the `projects-stuff` file in the Data directory using the following format: `repo author,repo title` e.g. `Nik-Mouz,setup-script` 
+- Replace the image in the Data directory to your desired wallpaper image and title your desired image: `wallpaper`
 - Run: `./setup-script.sh`
 
 ## License
