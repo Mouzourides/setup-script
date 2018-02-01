@@ -9,4 +9,5 @@ nodejs
 docker
 curl
 snapd-xdg-open
+silversearcher-ag
 npm
