@@ -10,4 +10,5 @@ docker
 curl
 snapd-xdg-open
 silversearcher-ag
-
+htop
+steghide
